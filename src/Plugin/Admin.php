@@ -85,7 +85,30 @@ class Admin {
 
         $this->options = get_option( Plugin::plugin_name );
 
-        echo '|||';
+        ?>
+        <div class="wrap">
+            <h1>JW Player Settings</h1>
+
+            <p>Please do here the general jw player setup. The player itself can be included via shortcode:</p>
+            <code>
+                [jw_player hls_url="https://..."]
+            </code>
+
+            <p>Or optional:</p>
+            <code>
+                [jw_player hls_url="https://..." poster_img="/wp-content/..."]
+            </code>
+
+            <form method="post" action="options.php">
+                <?php
+                // This prints out all hidden setting fields
+                settings_fields( $this->option_group_id );
+                do_settings_sections( Plugin::admin_page );
+                submit_button();
+                ?>
+            </form>
+        </div>
+        <?php
     }
 
     /**
@@ -217,7 +240,7 @@ class Admin {
      * @param array $section
      */
     public function print_section_info(array $section) {
-        print $this->option_form[$section['id']]['info'];
+        echo $this->option_form[$section['id']]['info'];
     }
 
     private function print_field_info($setting) {

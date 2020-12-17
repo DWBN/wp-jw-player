@@ -12,39 +12,36 @@ const FINAL_ERROR_MESSAGES = [
 
 Widgets.register('video-player', function(elem){
 
-
-    console.log(elem.dataset);
-
-
     var playerCtnr = elem,
         restartTimeout,
         playRetries = 0,
         currentBufferWaitingTime = INITIAL_BUFFER_MAX_TIME,
         currentErrorWaitingTime = INITIAL_ERROR_MAX_TIME,
-        playerId = playerCtnr.attr('id'),
-        width =  parseInt(elem.data('width'), 10),
-        height =  parseInt(elem.data('height'), 10),
-        image = (app.root + elem.data('image')).replace('//', '/'),
-        file = elem.data('file'),
+        playerId = playerCtnr.id || 'player' + Math.round(Math.random() * 1000),
+        width = 889,
+        height = 500,
+        image = elem.dataset.poster_img,
+        file = elem.dataset.hls_url,
         aspectratio = width + ':' + height,
         aspectPercent = height / width * 100,
 
         config = {
             width: '100%',
-            cast:{ }
-            , aspectratio: aspectratio
-            , primary: "flash"
-            , hlshtml: true
+            cast: { },
+            aspectratio: aspectratio,
+            // primary: "flash",
+            hlshtml: true,
+            playlist: [{
+                sources: [{file: file}],
+                image: image
+            }]
             // , skin:  app.root + 'js/jw6/skins/dwbn2.xml'
         },
 
         initPlayer = function (startRightAway) {
 
-            if (config.playlist) {
-                config.playlist = [{
-                    sources : state.sources,
-                    image: image
-                }]
+            if (!playerCtnr.id) {
+                playerCtnr.id = playerId;
             }
 
             jwplayer(playerId).setup(config);
@@ -71,14 +68,6 @@ Widgets.register('video-player', function(elem){
 
         },
 
-        hideAutoplay = function(){
-            elem.find('.streaming-video-area__autoplay').hide();
-        },
-
-        showAutoplay = function(){
-            elem.find('.streaming-video-area__autoplay').show();
-        },
-
         addPlayerEvents = function(playerId){
             if (window.location.hash === '#debug') {
                 jwplayer(playerId).on('all', function (eventName, eventData) {
@@ -90,21 +79,8 @@ Widgets.register('video-player', function(elem){
                 });
             }
 
-            jwplayer(playerId).on('fullscreen', function (data) {
-                state.fullscreen = data.fullscreen;
-                update_status_every(data.fullscreen ? UPDATE_TIME_FULLSCREEN : getBestUpdateTime());
-            });
-
-            jwplayer(playerId).on('resize', function (stats) {
-                if (state.fullscreen && $(document).width() > stats.width) {
-                    state.fullscreen = false;
-                    update_status_every(getBestUpdateTime());
-                }
-            });
-
             // if we start playing - hide the autoplay
             jwplayer(playerId).on('buffer', function(){
-                hideAutoplay();
 
                 // in case we get two buffer events shortly after each other
                 clearTimeout(restartTimeout);
@@ -117,7 +93,6 @@ Widgets.register('video-player', function(elem){
             });
 
             jwplayer(playerId).on('play', function(){
-                hideAutoplay();
                 clearTimeout(restartTimeout);
                 currentBufferWaitingTime = INITIAL_BUFFER_MAX_TIME;
                 currentErrorWaitingTime = INITIAL_ERROR_MAX_TIME;
@@ -146,47 +121,12 @@ Widgets.register('video-player', function(elem){
                     }, currentErrorWaitingTime);
                 }
             });
-
-            // show the thank you, please donate if you can overlay
-            jwplayer(playerId).on('complete', function(){
-                showAutoplay();
-                // elem.find('.streaming-video-area__overlay').show(); // taken out, because complete is also fired, once the stream breaks
-            });
         }
     ;
-
-    elem.css('padding-bottom', aspectPercent + '%');
-
-    if (file) {
-        config.file = file;
-        config.image = image;
-    } else {
-        // general streaming fallback
-        config.playlist = [{
-            sources : state.sources,
-            image: image
-        }];
-    }
 
     console.log('player config init %o', config);
     initPlayer();
 
-    elem.click(function(){
-        var state = jwplayer(playerId).getState().toLocaleLowerCase();
-
-        switch (state){
-            case 'error':
-                jwplayer(playerId).setup(config);
-                addPlayerEvents(playerId);
-
-                jwplayer(playerId).on('ready', function(){
-                    jwplayer(playerId).play(true);
-                });
-                break;
-        }
-
-    });
-
-    // reset the player
-    $(document).on('click', '.trigger--player-reset', initPlayer.bind(null, false));
+    // reset the player button
+    // $(document).on('click', '.trigger--player-reset', initPlayer.bind(null, false));
 });

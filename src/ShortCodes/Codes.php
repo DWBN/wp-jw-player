@@ -11,7 +11,7 @@ class Codes {
     }
 
 
-    public static function gallery_grid ($attributes) {
+    public static function jw_player ($attributes) {
 
         extract( shortcode_atts( array(
             'poster_img' => Plugin::get_option('default_poster_image'),
@@ -21,7 +21,7 @@ class Codes {
         /** @var $poster_img */
         /** @var $hls_url */
 
-        return '<div class="k_player widget" data-widgets="video-player" data-hls_url="' . $hls_url . '" data-poster_img="' . $poster_img . '">The JW player goes here.</div>';
+        return '<div class="k_player js-dwbn-jw-widget" data-widgets="video-player" data-hls_url="' . $hls_url . '" data-poster_img="' . $poster_img . '" style="background-image: url(' . $poster_img . ');">The JW player goes here.</div>';
 
     }
 
