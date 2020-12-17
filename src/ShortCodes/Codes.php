@@ -21,7 +21,7 @@ class Codes {
         /** @var $poster_img */
         /** @var $hls_url */
 
-        return '<div class="k_player js-dwbn-jw-widget" data-widgets="video-player" data-hls_url="' . $hls_url . '" data-poster_img="' . $poster_img . '" style="background-image: url(' . $poster_img . ');">The JW player goes here.</div>';
+        return '<div class="k_player js-dwbn-jw-widget" data-widgets="video-player" data-hls_url="' . $hls_url . '" data-poster_img="' . $poster_img . '" style="background-image: url(' . $poster_img . ');"></div>';
 
     }
 
