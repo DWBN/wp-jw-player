@@ -3,8 +3,8 @@
 const semver = require('semver');
 
 module.exports = function(grunt) {
-
     const pkg = grunt.file.readJSON('package.json');
+    const pluginName = pkg.name;
     const currentVersion = pkg.version;
     const webpackConf = require('./webpack.config');
 
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 
         bump: {
             options: {
-                files: ['package.json', 'vitaplace-products.php', 'src/Vitaplace/Plugin/Plugin.php'],
+                files: ['package.json', pluginName + '.php', 'src/Plugin/Plugin.php'],
                 commitFiles: ['-a'],
                 pushTo: 'origin',
                 globalReplace: true,
@@ -113,7 +113,7 @@ module.exports = function(grunt) {
                 command: [
                     'rm -rf build',
                     'mkdir build',
-                    'zip -r build/vitaplace-products-<%= bump.options.setVersion %>.zip . -x "*.git*" -x "*node_modules/*" -x "*.idea*"'
+                    'zip -r build/' + pluginName + '-<%= bump.options.setVersion %>.zip . -x "*.git*" -x "*node_modules/*" -x "*.idea*"'
                 ].join('&&')
             }
         }
