@@ -111,9 +111,13 @@ module.exports = function(grunt) {
         shell: {
             build: {
                 command: [
+                    'rm -rf vendor',
+                    'composer install --no-dev --optimize-autoloader', // optimized autoloader for production builds
                     'rm -rf build',
                     'mkdir build',
-                    'zip -r build/' + pluginName + '-<%= bump.options.setVersion %>.zip . -x "*.git*" -x "*node_modules/*" -x "*.idea*"'
+                    'zip -r build/' + pluginName + '-<%= bump.options.setVersion %>.zip . -x "*.git*" -x "*node_modules/*" -x "*.idea*"',
+                    'rm -rf vendor',
+                    'composer install' // install the develop version again
                 ].join('&&')
             }
         }
