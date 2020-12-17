@@ -1,0 +1,15 @@
+{
+    "name": "dwbn/wp-jw-player",
+    "description": "A simple plugin, which allows to include a hosted jw player powered responsive video player.",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": { "DwbnWpJwPlayer\\": "src" }
+    },
+    "authors": [
+        {
+            "name": "Andreas Schönefeldt",
+            "email": "schoenefeldt.andreas@gmail.com"
+        }
+    ],
+    "require": { }
+}

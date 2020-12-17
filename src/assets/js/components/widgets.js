@@ -1,0 +1,2 @@
+import '../widgets/video-player';
+
