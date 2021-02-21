@@ -99,6 +99,11 @@ class Admin {
                 [jw_player hls_url="https://..." poster_img="/wp-content/..."]
             </code>
 
+            <p>Or if you are only using a mp3 audio stream</p>
+            <code>
+                [k_audio_player audio_url="https://..." poster_img="/wp-content/..."]
+            </code>
+
             <form method="post" action="options.php">
                 <?php
                 // This prints out all hidden setting fields

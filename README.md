@@ -12,3 +12,10 @@ Or, if you would like to set a specific poster image:
 ```
 [jw_player hls_url="https://audio.dwbn.org/chenrezig" poster_img="https://path.to.your.image.com"]
 ```
+
+
+Or, for mp3 audio only:
+
+```
+[k_audio_player audio_url="https://audio.dwbn.org/chenrezig"]
+```
