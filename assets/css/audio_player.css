@@ -21,7 +21,8 @@
       background: #000;
       content: '';
       opacity: .3;
-      transition: opacity  ease .5s; }
+      transition: opacity  ease .5s;
+      z-index: 1; }
     .k_audio_player__area:after {
       content: '';
       position: absolute;
@@ -34,7 +35,8 @@
       border-top-width: 99.9px;
       border-bottom-width: 99.9px;
       opacity: .9;
-      transition: opacity  ease .5s; }
+      transition: opacity  ease .5s;
+      z-index: 2; }
     .k_audio_player__area--playing:before {
       opacity: 0; }
     .k_audio_player__area--playing:after, .k_audio_player__area--playing:hover:after {

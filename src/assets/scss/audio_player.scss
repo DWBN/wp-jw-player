@@ -32,6 +32,7 @@ $play-dimension: 150px;
       content: '';
       opacity: .3;
       transition: opacity  ease .5s;
+      z-index: 1;
     }
 
     &:after {
@@ -47,6 +48,7 @@ $play-dimension: 150px;
       border-bottom-width: $play-dimension * 0.666;
       opacity: .9;
       transition: opacity  ease .5s;
+      z-index: 2;
     }
 
     &--playing {
