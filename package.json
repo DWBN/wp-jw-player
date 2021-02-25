@@ -1,6 +1,6 @@
 {
   "name": "dwbn-wp-jw-player",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple plugin, which allows to include a hosted jw player powered responsive video player.",
   "main": "Gruntfile.js",
   "scripts": {

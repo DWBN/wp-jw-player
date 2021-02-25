@@ -8,7 +8,7 @@ use DwbnWpJwPlayer\ShortCodes\Codes;
 
 class Plugin {
 
-    const version = '1.1.1';
+    const version = '1.1.2';
     const plugin_name = 'dwbn-wp-jw-player';
     const admin_page = 'dwbn-wp-jw-player-admin';
     /**
