@@ -30,8 +30,8 @@
       height: 0;
       border: 150px solid transparent;
       border-left-color: white;
-      left: calc(50% - 75px);
-      top: calc(50% - 75px);
+      left: calc(50% - 50px);
+      top: calc(50% - 150px 0.666);
       border-top-width: 99.9px;
       border-bottom-width: 99.9px;
       opacity: .9;

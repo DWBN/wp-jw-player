@@ -144,6 +144,6 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', 'Production Build', function() {
-        grunt.task.run('prompt', 'bump', 'ui', 'shell:build');
+        grunt.task.run('prompt', 'ui', 'bump', 'shell:build');
     });
 };
