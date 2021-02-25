@@ -136,10 +136,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bump');
 
     grunt.registerTask('default', 'UI Development', function () {
-        grunt.task.run('sass', 'autoprefixer', 'webpack', 'watch');
+        grunt.task.run('ui', 'watch');
+    });
+
+    grunt.registerTask('ui', 'UI Development', function () {
+        grunt.task.run('sass', 'autoprefixer', 'webpack');
     });
 
     grunt.registerTask('build', 'Production Build', function() {
-        grunt.task.run('prompt', 'bump', 'shell:build');
+        grunt.task.run('prompt', 'bump', 'ui', 'shell:build');
     });
 };
