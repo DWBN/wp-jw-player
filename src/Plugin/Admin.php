@@ -73,8 +73,8 @@ class Admin {
         // This page will be under "Settings"
 
         add_options_page(
-            'JW Player Settings',
-            'JW Player',
+            'DWBN Player Settings',
+            'DWBN Player',
             'manage_options',
             Plugin::admin_page,
             array( $this, 'create_admin_page' )
