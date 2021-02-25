@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: JW Player
+Plugin Name: DWBN JW Player
 Plugin URI: https://github.com/DWBN/wp-jw-player
 Description: A simple plugin, which allows to include a hosted jw player powered responsive video player.
-Version: 1.1.2
+Version: 1.1.3
 Author: Andreas Schönefeldt
 Author URI: https://github.com/Andreas-Schoenefeldt
 Contributors: Andreas Schönefeldt
